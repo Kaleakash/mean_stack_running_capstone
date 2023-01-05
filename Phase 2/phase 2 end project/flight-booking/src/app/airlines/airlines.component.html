@@ -1,0 +1,14 @@
+<div class="right-section">
+    <table class="table table-bordered border-dark table-striped">
+        <tr>
+            <th>IATA Code</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        <tr *ngFor="let airline of airlinetData">
+            <td>{{airline.IATAcode}}</td>
+            <td>{{airline.name}}</td>
+            <td>{{airline.price}}</td>
+        </tr>
+    </table>
+</div>

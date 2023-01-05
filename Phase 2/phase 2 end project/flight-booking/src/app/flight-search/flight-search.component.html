@@ -1,0 +1,88 @@
+<div id="booking" class="section">
+    <div id="flightstatus">{{info}}</div>
+   
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-md-offset-1">
+                    <div class="booking-form">
+                        <form [formGroup]="flightRef">
+                            <div class="form-group">
+                                <div class="form-checkbox">
+                                 
+                                    <label for="one-way">
+                                        <input type="radio" id="one-way" name="flighttype" formControlName="flighttype" value="oneway">
+                                        <span></span>One way
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Flying from</span>
+                                        <input class="form-control" type="text" placeholder="City or airport" name="fromCity" formControlName="fromCity">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Flyning to</span>
+                                        <input class="form-control" type="text" placeholder="City or airport" name="toCity" formControlName="toCity">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span class="form-label">Departing</span>
+                                        <input class="form-control" type="date" required formControlName="departingDate" id="datepicker">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <span class="form-label">Adults (18+)</span>
+                                        <select class="form-control" formControlName="adults">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <span class="form-label">Children (0-17)</span>
+                                        <select class="form-control" formControlName="children">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <span class="form-label">Travel class</span>
+                                        <select class="form-control" formControlName="travelClass">
+                                            <option value="economy class">Economy class</option>
+                                            <option value="business class">Business class</option>
+                                            <option value="first class">First class</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-btn">
+                                <button class="submit-btn" (click)="searchFlight()">Show flights</button>
+                            </div>
+                        </form>
+                        <span style="color:red;">{{msg}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

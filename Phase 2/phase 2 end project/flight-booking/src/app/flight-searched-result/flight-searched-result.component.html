@@ -1,0 +1,151 @@
+<div class="container">
+    <div class="row">
+        <div *ngIf="flag1==0">
+
+          <div *ngIf="flight_data.length==0">
+            <h2>No Flights Avaiable</h2>  
+          </div>
+          <div *ngIf="flight_data.length > 0">
+          <div class="col-12" style="text-align: center;">
+            <h2>Searched Flight Details</h2>
+          </div>
+          
+          <div id="searchedFlight">
+                <div *ngFor="let flight of flight_data">
+                Airline <span style="color:tomato">{{flight.airline}}</span> Date of Journey <span style="color:tomato">{{flight.flightDate}} </span>Base Price <span style="color:tomato">{{flight.price|currency}}</span>
+                <input type="button" value="book ticket" class="btn btn-link" (click)="bookTicket(flight)" style="text-decoration: none;"/>  
+               </div>
+          </div>
+        </div>
+            <a routerLink="" style="text-decoration: none;text-align: 25pt;">Search Once again</a>
+        </div>
+      </div>
+
+    </div>
+      
+      <div *ngIf="flag1==1" class="section-center">
+
+        <div class="row" class="booking-form">
+          <h2>Fill Customer Details</h2>
+          <div class="col-md-12 col-md-offset-1">
+              <div>
+                  <form [formGroup]="customerInfo" (ngSubmit)="confirmBooking()">
+                    <div class="col-md-5" >
+                     
+                        <div *ngFor="let adults of adultsData">
+                          <div class="form-group">
+                          <span class="form-label">{{adults.label}}</span>
+                          <input class="form-control" type="text" placeholder="Adults" formControlName={{adults.label}}>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-5">
+                   
+                      <div *ngFor="let children of childrenData">
+                        <div class="form-group">
+                        <span class="form-label"> {{children.label}}</span>
+                        <input class="form-control" type="text" placeholder="Children" formControlName={{children.label}}>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <input type="submit" value="submit" class="btn btn-outline-primary"/>
+                      <input type="reset" value="reset" class="btn btn-outline-info"/>
+                    </div>
+                </div>
+                 </form>        
+              </div>
+            </div>
+        </div>   
+      </div>         
+          
+      <div *ngIf="flag1==2" class="section-center">
+        <div style="color:tomato;font-size: 30pt;text-align: center;">Your Ticket booked successfully
+          <br/>
+          <input type="button" value="view ticket" class="btn btn-link" (click)="viewTicket()" style="text-decoration: none;font-size: 25pt;"/> 
+        </div>
+                 
+      </div>
+
+      <div class="section-center">
+        <div class="container">
+            
+            <div *ngIf="bookingFlag">
+
+              <div class="row">
+                <div class="col-md-12 col-md-offset-1"  id="htmlData">
+                    <div class="booking-form">
+                    <div>
+                    <h2 style="text-align: center;">Plane Ticket Purchase</h2>
+                    <hr color="orange"/>
+                    <h5>PNR Number : {{pnrNumber.toUpperCase()}}</h5>
+                    <h4>Booking Date</h4>
+                     {{bookingDate | date:'long'}}
+                    <h4>Guest Name</h4>
+                    {{customer|json}}
+                    <hr/>
+                    <h2>Flight Details</h2>
+                    <h4>Route</h4>
+                    <span>
+                      <table class="table">
+                          <tr>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Airline</th>
+                            <th>Departure Date</th>
+                            <th>Travel Class</th>
+                          </tr>
+                          <tr>
+                            <td>{{airportData.get(customer_info.fromCity)}}</td>
+                            <td>{{airportData.get(customer_info.toCity)}}</td>
+                            <td>{{flight.airline}}</td>
+                            <td>{{customer_info.departingDate| date:'yyyy-mm-dd hh:MM:ss'}}</td>
+                            <td>{{customer_info.travelClass}}</td>
+                          </tr>
+                      </table>
+                    </span>
+                    <hr/>
+                    <h4>Fare Breakdown</h4>
+                    <pre>
+Base Fare                        : {{flight.price|currency}}
+Passenger Service Charge         : $10
+Surcharge                        : $80
+Fuel/Insurance                   : $30
+Ticket Service Charge            : $5
+----------------------------------------------
+Total Amount                     : {{flight.price + 10 + 80 + 30 + 5 + (flightClass.get(customer_info.travelClass)/100*flight.price) | currency}} 
+                    </pre>  
+                    <h2>Important information</h2> 
+  <p>Passengers are required to bring this itinerary/receipts along with an Official ID with proto issued by the government or know corporation upon entering the terminal</p>
+  
+  <p>The airline may contact the card holder or the passenger for verification of their payment, and in case the airline suspects or has a reason to believe that the ticket(s) purchased were made fraudulently, the airline may cancel the reservation made by the passenger. </p>
+  <p>Passenger are recommended to check in two hours before the scheduled departure time to prevent cancellation of passenger reservation. The airline shall not be liable to loss or damages due to passenger’s failure to comply with the provisions above if without fault by the airline.</p> 
+                 <h2>Plane Ticket Purchase</h2>
+                 <h2>Privacy policy </h2>
+                 <p>https://www.myairline.com/privacyplicy</p>
+                 <h2>Terms and Conditions</h2>
+                 <p>https://www.myairline.com/mytermandconditions</p>
+                 <h2>Restricted items or Gods</h2>
+                 <p>We reserve the right to confiscate any item or gods brough by the passenger which we belive might bring harm or threat to our guest, including the following</p>
+                 <ol>
+                  <li>Pointed or sharp objects</li>
+                  <li>Firearms and Ammunition</li>
+                  <li>Exposives and flammable substances</li>
+                  <li>Toys represents dangerous objects such as toy guns and knives</li>
+                  <li>Aerosols</li>
+                  <li>Any other items which may be considered security hazards by law</li>
+                 </ol>     
+                 <hr>
+                 <span>THANK YOU FOR MAKING US YOUR AIRLINE OF CHOICE! HAVE A SAFE FLIGHT</span>
+                </div>
+                </div>
+              </div>
+          </div>
+          <div class="col-md-4 text-right">
+            <button class="btn btn-success btn-block" (click)="downloadTicket()">Download Ticket</button>
+          </div>
+
+        </div>
+</div>  

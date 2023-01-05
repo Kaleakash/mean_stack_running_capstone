@@ -1,0 +1,12 @@
+<div class="left-section">
+    <table class="table table-bordered border-dark">
+        <tr>
+            <th>IATA Code</th>
+            <th>City</th>
+        </tr>
+        <tr *ngFor="let airport of airportData">
+            <td>{{airport.IATAcode}}</td>
+            <td>{{airport.city}}</td>
+        </tr>
+    </table>
+</div>
