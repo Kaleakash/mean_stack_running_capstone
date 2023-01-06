@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     phonenumber:new FormControl(),
     address:new FormControl()
   });
-
+  msg:string ="";
   initialCustomerNumber:number = 112233;  
   initialAccountNumber:number = 10010;
   
@@ -69,9 +69,11 @@ export class HomeComponent implements OnInit {
                 this.router.navigate(["/customerHome"]).then(() => {
                   window.location.reload();
                   window.scrollTo(0,0);
+                  this.msg = "successfully login";
                 });
               }else {
                 alert("failure try once again")
+                this.msg ="failure try once again";
               }
           },
           error:(error:any)=>console.log(error),

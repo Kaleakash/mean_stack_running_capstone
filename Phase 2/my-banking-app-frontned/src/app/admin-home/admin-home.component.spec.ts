@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule} from '@angular/common/http/testing';
 import { AdminHomeComponent } from './admin-home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AdminHomeComponent', () => {
   let component: AdminHomeComponent;
@@ -8,7 +9,8 @@ describe('AdminHomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminHomeComponent ]
+      declarations: [ AdminHomeComponent ],
+      imports: [HttpClientTestingModule,HttpClientModule]
     })
     .compileComponents();
 
