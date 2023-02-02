@@ -1,0 +1,21 @@
+version: '3' 
+
+# Define the services/containers to be run
+services:
+  angular: 
+    hostname: localhost
+    build: ./my-banking-app-frontend
+    ports:
+      - "80:80" 
+  
+  express: 
+    build: ./my-banking-app-backend 
+    ports:
+      - "3000:3000" 
+    links:
+      - database
+
+  database: 
+    image: mongo 
+    ports:
+      - "27017:27017"   

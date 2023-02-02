@@ -76,17 +76,22 @@ export class FlightSearchComponent implements OnInit {
     console.log(flight);
     let currentDate = new Date().toISOString().slice(0, 10);
     let yourSelectedDate = flight.departingDate;
-    if(currentDate>yourSelectedDate){
-      this.msg="Plz select current or future date!"
-    }else {
-        let searchedFlights = this.flightData.filter(ff=>ff.origin==flight.fromCity && ff.destination==ff.destination && ff.flightDate==flight.departingDate)
+    // if(currentDate>yourSelectedDate){
+    //   this.msg="Plz select current or future date!"
+    // }else {
+    //     let searchedFlights = this.flightData.filter(ff=>ff.origin==flight.fromCity && ff.destination==ff.destination && ff.flightDate==flight.departingDate)
+    //     console.log(searchedFlights)
+    //     sessionStorage.setItem("flight-data",JSON.stringify(searchedFlights));
+    //     sessionStorage.setItem("customer-info",JSON.stringify(flight));
+    //     this.router.navigate(["flight-searched-result"]);
+    //     this.flightRef.reset();
+    // }
+    
+    let searchedFlights = this.flightData.filter(ff=>ff.origin==flight.fromCity && ff.destination==ff.destination && ff.flightDate==flight.departingDate)
         console.log(searchedFlights)
         sessionStorage.setItem("flight-data",JSON.stringify(searchedFlights));
         sessionStorage.setItem("customer-info",JSON.stringify(flight));
         this.router.navigate(["flight-searched-result"]);
         this.flightRef.reset();
-    }
-    
-    
   }
 }
