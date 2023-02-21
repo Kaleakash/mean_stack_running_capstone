@@ -556,6 +556,7 @@ function selectTaste(){
         var listName= document.createElement('a');
         listName.setAttribute('class','list-name');
         listName.innerText= item.category;
+        console.log(item.category)
         listName.setAttribute('href','#'+item.category)
     
         listCard.appendChild(listImg);
